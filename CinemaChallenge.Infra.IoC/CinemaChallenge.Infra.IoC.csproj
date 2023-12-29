@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaChallenge.Application\CinemaChallenge.Application.csproj" />
+    <ProjectReference Include="..\CinemaChallenge.Domain\CinemaChallenge.Domain.csproj" />
+    <ProjectReference Include="..\CinemaChallenge.Infra.Data\CinemaChallenge.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
