@@ -1,3 +1,4 @@
+using CinemaChallenge.Infra.Data.EntityFramework;
 using CinemaChallenge.Infra.Data.Factories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,7 @@ builder.Services.AddSwaggerGen();
 //db
 var dbContextFactory = new DbContextFactory();
 var appDbContext = dbContextFactory.CreateDbContext(args);
-builder.Services.AddSingleton(appDbContext);
+builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 

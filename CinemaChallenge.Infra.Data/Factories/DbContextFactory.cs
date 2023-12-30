@@ -17,10 +17,17 @@ namespace CinemaChallenge.Infra.Data.Factories
 
         private static void ConfigureDbContextOptions(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder().AddUserSecrets<Movie>().Build();
-            var connectionString = config.GetConnectionString("MyDatabaseConnection");
-            Console.WriteLine(connectionString ?? "not found");
-            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            try {
+                var config = new ConfigurationBuilder().AddUserSecrets<Movie>().Build();
+                var connectionString = config.GetConnectionString("MyDatabaseConnection");
+                Console.WriteLine(connectionString ?? "not found");
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            } catch (Exception ex)
+            {
+                Console.WriteLine($"Error configuring DbContext options: {ex.Message}");
+                throw;
+            }
+
         }
     }
 }
