@@ -4,18 +4,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace CinemaChallenge.Infra.Data.EntityFramework
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-        private DbSet<Movie> Movies { get; set; }
+        public DbSet<Movie> Movies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder().AddUserSecrets<Movie>().Build();
-            string connectionString = config.GetConnectionString("CinemaConnection")
-                ?? throw new InvalidOperationException("A string de conexão não pode ser nula.");
-            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             base.OnConfiguring(optionsBuilder);
         }
     }
