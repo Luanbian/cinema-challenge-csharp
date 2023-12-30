@@ -24,7 +24,6 @@ namespace CinemaChallenge.Infra.Data.Factories
                     .Build();
 
                 var connectionString = config.GetConnectionString("MyDatabaseConnection");
-                Console.WriteLine(connectionString ?? "nao tem");
                 optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             } catch (Exception ex)
             {
