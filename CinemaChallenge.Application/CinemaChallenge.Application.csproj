@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\CinemaChallenge.Domain\CinemaChallenge.Domain.csproj" />
+		<ProjectReference Include="..\CinemaChallenge.Infra.Data\CinemaChallenge.Infra.Data.csproj" />
 	</ItemGroup>
 
 </Project>
