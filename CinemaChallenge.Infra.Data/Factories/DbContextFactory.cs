@@ -1,5 +1,4 @@
-﻿using CinemaChallenge.Domain.Entities;
-using CinemaChallenge.Infra.Data.EntityFramework;
+﻿using CinemaChallenge.Infra.Data.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -18,9 +17,14 @@ namespace CinemaChallenge.Infra.Data.Factories
         private static void ConfigureDbContextOptions(DbContextOptionsBuilder optionsBuilder)
         {
             try {
-                var config = new ConfigurationBuilder().AddUserSecrets<Movie>().Build();
+                string apiProjectPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "CinemaChallenge.API");
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(apiProjectPath)
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
                 var connectionString = config.GetConnectionString("MyDatabaseConnection");
-                Console.WriteLine(connectionString ?? "not found");
+                Console.WriteLine(connectionString ?? "nao tem");
                 optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             } catch (Exception ex)
             {
