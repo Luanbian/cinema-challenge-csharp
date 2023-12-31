@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 
 //usecases
 builder.Services.AddScoped<ICreateMovie, CreateMovie>();
+builder.Services.AddScoped<IFindMovie, FindMovie>();
 
 //repositories
 builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
