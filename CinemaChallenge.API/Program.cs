@@ -2,7 +2,6 @@ using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Application.UseCases;
 using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Infra.Data.EntityFramework;
-using CinemaChallenge.Infra.Data.Factories;
 using CinemaChallenge.Infra.Data.Interfaces;
 using CinemaChallenge.Infra.Data.Repositories;
 
@@ -21,8 +20,6 @@ builder.Services.AddScoped<ICreateMovie, CreateMovie>();
 builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
 
 //db
-var dbContextFactory = new DbContextFactory();
-var appDbContext = dbContextFactory.CreateDbContext(args);
 builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
