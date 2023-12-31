@@ -18,6 +18,7 @@ builder.Services.AddScoped<ICreateMovie, CreateMovie>();
 
 //repositories
 builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
+builder.Services.AddScoped<IFindRepository<Movie>, EFFindMovie>();
 
 //db
 builder.Services.AddDbContext<AppDbContext>();
