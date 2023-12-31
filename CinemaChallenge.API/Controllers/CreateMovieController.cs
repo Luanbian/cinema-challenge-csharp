@@ -16,6 +16,10 @@ namespace CinemaChallenge.API.Controllers
         {
             try
             {
+                if(!ModelState.IsValid)
+                {
+                        return BadRequest(ModelState);
+                }
                 Movie movie = create.Perform(movieDto);
                 return Ok(movie);
             } catch (Exception ex)
