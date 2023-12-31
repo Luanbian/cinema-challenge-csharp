@@ -1,4 +1,5 @@
-﻿using CinemaChallenge.Application.Interfaces;
+﻿using CinemaChallenge.Application.DTOs;
+using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,11 @@ namespace CinemaChallenge.API.Controllers
     {
         private readonly ICreateMovie create = create;
         [HttpPost]
-        public IActionResult Handle()
+        public IActionResult Handle([FromBody] MovieDto movieDto)
         {
             try
             {
-                Movie movie = create.Perform();
+                Movie movie = create.Perform(movieDto);
                 return Ok(movie);
             } catch (Exception ex)
             {

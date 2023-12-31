@@ -1,4 +1,5 @@
-﻿using CinemaChallenge.Application.Interfaces;
+﻿using CinemaChallenge.Application.DTOs;
+using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Infra.Data.Interfaces;
 
@@ -7,11 +8,11 @@ namespace CinemaChallenge.Application.UseCases
     public class CreateMovie(ICreateRepository<Movie> create) : ICreateMovie
     {
         private readonly ICreateRepository<Movie> repository = create;
-        public Movie Perform()
+        public Movie Perform(MovieDto data)
         {
-            string title = "Clube da luta";
-            string synopsis = "Não falamos sobre o clube da luta";
-            string releaseDate = "15/10/1999";
+            string title = data.Title;
+            string synopsis = data.Synopsis;
+            string releaseDate = data.ReleaseDate;
             Movie movie = Movie.Create(title, synopsis, releaseDate);
             repository.Create(movie);
             return movie;
