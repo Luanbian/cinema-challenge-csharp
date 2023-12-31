@@ -1,14 +1,24 @@
+using CinemaChallenge.Application.Interfaces;
+using CinemaChallenge.Application.UseCases;
+using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Infra.Data.EntityFramework;
 using CinemaChallenge.Infra.Data.Factories;
+using CinemaChallenge.Infra.Data.Interfaces;
+using CinemaChallenge.Infra.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//usecases
+builder.Services.AddScoped<ICreateMovie, CreateMovie>();
+
+//repositories
+builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
 
 //db
 var dbContextFactory = new DbContextFactory();
