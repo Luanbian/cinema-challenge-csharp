@@ -1,10 +1,10 @@
-﻿using CinemaChallenge.Application.DTOs;
-using CinemaChallenge.Domain.Entities;
+﻿using CinemaChallenge.Domain.Entities;
+using CinemaChallenge.Domain.Interfaces;
 
 namespace CinemaChallenge.Application.Interfaces
 {
     public interface IFindMovie
     {
-        List<Movie> Perform(MovieProps data);
+        List<Movie> Perform(IMovie data);
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace CinemaChallenge.Application.DTOs
+﻿namespace CinemaChallenge.Domain.Interfaces
 {
-    public record MovieProps
+    public record IMovie
     {
         public string? Title { get; init; }
 

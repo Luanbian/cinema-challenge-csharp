@@ -1,7 +1,6 @@
-﻿using CinemaChallenge.Application.DTOs;
-using CinemaChallenge.Application.Interfaces;
+﻿using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Domain.Entities;
-using Microsoft.AspNetCore.Http;
+using CinemaChallenge.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaChallenge.API.Controllers
@@ -13,7 +12,7 @@ namespace CinemaChallenge.API.Controllers
         private readonly IFindMovie find = find;
 
         [HttpGet]
-        public IActionResult Handle([FromQuery] MovieProps movieProps)
+        public IActionResult Handle([FromQuery] IMovie movieProps)
         {
             try
             {
