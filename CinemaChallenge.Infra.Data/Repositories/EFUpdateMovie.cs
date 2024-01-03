@@ -13,6 +13,12 @@ namespace CinemaChallenge.Infra.Data.Repositories
         {
             Movie? movie = db.Movies.Find(id);
             if (movie == null) return;
+            movie.Title = data.Title ?? movie.Title;
+            movie.Synopsis = data.Synopsis ?? movie.Synopsis;
+            movie.ReleaseDate = data.ReleaseDate ?? movie.ReleaseDate;
+
+            db.Movies.Update(movie);
+            db.SaveChanges();
         }
     }
 }
