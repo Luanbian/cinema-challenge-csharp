@@ -2,6 +2,6 @@
 {
     public interface IDeleteMovie
     {
-        void Delete(string id);
+        void Perform(string id);
     }
 }
