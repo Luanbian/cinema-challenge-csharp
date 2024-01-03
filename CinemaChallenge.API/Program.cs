@@ -18,11 +18,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICreateMovie, CreateMovie>();
 builder.Services.AddScoped<IFindMovie, FindMovie>();
 builder.Services.AddScoped<IUpdateMovie, UpdateMovie>();
+builder.Services.AddScoped<IDeleteMovie, DeleteMovie>();
 
 //repositories
 builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
 builder.Services.AddScoped<IFindRepository<Movie>, EFFindMovie>();
 builder.Services.AddScoped<IUpdateRepository<IMovie>, EFUpdateMovie>();
+builder.Services.AddScoped<IDeleteRepository, EFDeleteMovie>();
 
 //db
 builder.Services.AddDbContext<AppDbContext>();
