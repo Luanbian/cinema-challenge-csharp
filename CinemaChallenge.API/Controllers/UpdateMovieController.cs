@@ -15,7 +15,7 @@ namespace CinemaChallenge.API.Controllers
             try
             {
                 update.Perform(id, data);
-                return Ok($"atualizado o item {id}");
+                return Ok($"atualizado o item {id} com sucesso");
             } catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);

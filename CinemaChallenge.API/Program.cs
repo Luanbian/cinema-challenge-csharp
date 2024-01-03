@@ -1,6 +1,7 @@
 using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Application.UseCases;
 using CinemaChallenge.Domain.Entities;
+using CinemaChallenge.Domain.Interfaces;
 using CinemaChallenge.Infra.Data.EntityFramework;
 using CinemaChallenge.Infra.Data.Interfaces;
 using CinemaChallenge.Infra.Data.Repositories;
@@ -16,10 +17,12 @@ builder.Services.AddSwaggerGen();
 //usecases
 builder.Services.AddScoped<ICreateMovie, CreateMovie>();
 builder.Services.AddScoped<IFindMovie, FindMovie>();
+builder.Services.AddScoped<IUpdateMovie, UpdateMovie>();
 
 //repositories
 builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
 builder.Services.AddScoped<IFindRepository<Movie>, EFFindMovie>();
+builder.Services.AddScoped<IUpdateRepository<IMovie>, EFUpdateMovie>();
 
 //db
 builder.Services.AddDbContext<AppDbContext>();
