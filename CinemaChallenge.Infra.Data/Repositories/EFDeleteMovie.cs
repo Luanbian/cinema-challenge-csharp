@@ -12,7 +12,9 @@ namespace CinemaChallenge.Infra.Data.Repositories
             Movie? movie = db.Movies.Find(id);
             if (movie != null)
             {
-                db.Movies.Remove(movie);
+                movie.IsDeleted = true;
+                movie.DeletedAt = DateTime.Now;
+                db.Movies.Update(movie);
                 db.SaveChanges();
             } else
             {
