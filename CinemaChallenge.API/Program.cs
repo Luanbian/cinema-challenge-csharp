@@ -1,5 +1,5 @@
 using CinemaChallenge.Application.Interfaces;
-using CinemaChallenge.Application.UseCases;
+using CinemaChallenge.Application.UseCases.Movies;
 using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Domain.Interfaces;
 using CinemaChallenge.Infra.Data.EntityFramework;

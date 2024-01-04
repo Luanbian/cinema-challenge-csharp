@@ -12,7 +12,7 @@ namespace CinemaChallenge.Application.UseCases
         {
             string title = data.Title;
             string synopsis = data.Synopsis;
-            string releaseDate = data.ReleaseDate;
+            string? releaseDate = data.ReleaseDate;
             Movie movie = Movie.Create(title, synopsis, releaseDate);
             repository.Create(movie);
             return movie;

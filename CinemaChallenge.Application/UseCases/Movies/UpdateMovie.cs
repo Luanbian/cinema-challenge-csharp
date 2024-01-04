@@ -3,7 +3,7 @@ using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Domain.Interfaces;
 using CinemaChallenge.Infra.Data.Interfaces;
 
-namespace CinemaChallenge.Application.UseCases
+namespace CinemaChallenge.Application.UseCases.Movies
 {
     public class UpdateMovie(IUpdateRepository<IMovie> update) : IUpdate<IMovie>, IUpdate<MovieDto>
     {

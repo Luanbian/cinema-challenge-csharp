@@ -3,7 +3,7 @@ using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Domain.Interfaces;
 using CinemaChallenge.Infra.Data.Interfaces;
 
-namespace CinemaChallenge.Application.UseCases
+namespace CinemaChallenge.Application.UseCases.Movies
 {
     public class FindMovie(IFindRepository<Movie> find) : IFind<Movie, IMovie>
     {

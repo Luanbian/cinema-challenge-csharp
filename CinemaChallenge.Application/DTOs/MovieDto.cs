@@ -2,22 +2,13 @@
 
 namespace CinemaChallenge.Application.DTOs
 {
-    public record MovieDto
+    public record MovieDto(string Title, string Synopsis, string? ReleaseDate)
     {
         [Required(ErrorMessage = "Título é obrigatório")]
-        public string Title { get; init; }
+        public string Title { get; init; } = Title;
 
         [Required(ErrorMessage = "Sinopse é obrigatória")]
-        public string Synopsis { get; init; }
-
-        [Required(ErrorMessage = "Data de lançamento é obrigatória")]
-        public string ReleaseDate { get; init; }
-
-        public MovieDto(string title, string synopsis, string releaseDate)
-        {
-            Title = title;
-            Synopsis = synopsis;
-            ReleaseDate = releaseDate;
-        }
+        public string Synopsis { get; init; } = Synopsis;
+        public string? ReleaseDate { get; init; } = ReleaseDate;
     }
 }
