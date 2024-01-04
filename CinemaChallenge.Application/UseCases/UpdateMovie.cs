@@ -5,7 +5,7 @@ using CinemaChallenge.Infra.Data.Interfaces;
 
 namespace CinemaChallenge.Application.UseCases
 {
-    public class UpdateMovie(IUpdateRepository<IMovie> update) : IUpdateMovie
+    public class UpdateMovie(IUpdateRepository<IMovie> update) : IUpdate<IMovie>, IUpdate<MovieDto>
     {
         private readonly IUpdateRepository<IMovie> repository = update;
         public void Perform(string id, IMovie data)

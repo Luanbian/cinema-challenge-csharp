@@ -5,7 +5,7 @@ using CinemaChallenge.Infra.Data.Interfaces;
 
 namespace CinemaChallenge.Application.UseCases
 {
-    public class CreateMovie(ICreateRepository<Movie> create) : ICreateMovie
+    public class CreateMovie(ICreateRepository<Movie> create) : ICreate<Movie, MovieDto>
     {
         private readonly ICreateRepository<Movie> repository = create;
         public Movie Perform(MovieDto data)

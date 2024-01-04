@@ -5,7 +5,7 @@ using CinemaChallenge.Infra.Data.Interfaces;
 
 namespace CinemaChallenge.Application.UseCases
 {
-    public class FindMovie(IFindRepository<Movie> find) : IFindMovie
+    public class FindMovie(IFindRepository<Movie> find) : IFind<Movie, IMovie>
     {
         private readonly IFindRepository<Movie> repository = find;
         public List<Movie> Perform(IMovie data)
