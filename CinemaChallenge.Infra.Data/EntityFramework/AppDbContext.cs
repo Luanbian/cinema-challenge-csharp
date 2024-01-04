@@ -7,6 +7,7 @@ namespace CinemaChallenge.Infra.Data.EntityFramework
     public class AppDbContext : DbContext
     {
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
