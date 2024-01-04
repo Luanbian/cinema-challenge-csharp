@@ -30,6 +30,7 @@ builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
 builder.Services.AddScoped<IFindRepository<Movie>, EFFindMovie>();
 builder.Services.AddScoped<IUpdateRepository<IMovie>, EFUpdateMovie>();
 builder.Services.AddScoped<IDeleteRepository, EFDeleteMovie>();
+builder.Services.AddScoped<ICreateRepository<User>, EFCreateUser>();
 
 //db
 builder.Services.AddDbContext<AppDbContext>();
