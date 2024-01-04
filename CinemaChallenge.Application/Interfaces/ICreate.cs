@@ -1,7 +1,7 @@
 ﻿namespace CinemaChallenge.Application.Interfaces
 {
-    public interface IDeleteMovie
+    public interface ICreate<T, Dto>
     {
-        void Perform(string id);
+        T Perform(Dto data);
     }
 }
