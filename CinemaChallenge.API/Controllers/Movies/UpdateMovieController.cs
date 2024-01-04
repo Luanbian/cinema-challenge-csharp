@@ -2,13 +2,13 @@
 using CinemaChallenge.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CinemaChallenge.API.Controllers
+namespace CinemaChallenge.API.Controllers.Movies
 {
     [Route("api/movies")]
     [ApiController]
-    public class UpdateMovieController(IUpdateMovie update) : ControllerBase
+    public class UpdateMovieController(IUpdate<IMovie> update) : ControllerBase
     {
-        private readonly IUpdateMovie update = update;
+        private readonly IUpdate<IMovie> update = update;
         [HttpPatch]
         public IActionResult Handle([FromQuery] string id, [FromBody] IMovie data)
         {
@@ -16,7 +16,8 @@ namespace CinemaChallenge.API.Controllers
             {
                 update.Perform(id, data);
                 return Ok($"atualizado o item {id} com sucesso");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

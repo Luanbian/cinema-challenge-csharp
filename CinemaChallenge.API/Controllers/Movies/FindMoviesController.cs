@@ -3,13 +3,13 @@ using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CinemaChallenge.API.Controllers
+namespace CinemaChallenge.API.Controllers.Movies
 {
     [Route("api/movies")]
     [ApiController]
-    public class FindMoviesController(IFindMovie find) : ControllerBase
+    public class FindMoviesController(IFind<Movie, IMovie> find) : ControllerBase
     {
-        private readonly IFindMovie find = find;
+        private readonly IFind<Movie, IMovie> find = find;
 
         [HttpGet]
         public IActionResult Handle([FromQuery] IMovie movieProps)
@@ -18,7 +18,8 @@ namespace CinemaChallenge.API.Controllers
             {
                 List<Movie> movies = find.Perform(movieProps);
                 return Ok(movies);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

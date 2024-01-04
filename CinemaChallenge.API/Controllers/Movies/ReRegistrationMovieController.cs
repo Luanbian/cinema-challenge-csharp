@@ -2,13 +2,13 @@
 using CinemaChallenge.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CinemaChallenge.API.Controllers
+namespace CinemaChallenge.API.Controllers.Movies
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReRegistrationMovieController(IUpdateMovie update) : ControllerBase
+    public class ReRegistrationMovieController(IUpdate<MovieDto> update) : ControllerBase
     {
-        private readonly IUpdateMovie update = update;
+        private readonly IUpdate<MovieDto> update = update;
 
         [HttpPut]
         public IActionResult Handle([FromQuery] string id, [FromBody] MovieDto movieDto)
@@ -18,7 +18,8 @@ namespace CinemaChallenge.API.Controllers
                 if (!ModelState.IsValid) return BadRequest(ModelState);
                 update.Perform(id, movieDto);
                 return Ok($"item {id} recadastrado com sucesso");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

@@ -1,25 +1,25 @@
 ﻿using CinemaChallenge.Application.DTOs;
 using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CinemaChallenge.API.Controllers
+namespace CinemaChallenge.API.Controllers.Movies
 {
     [Route("api/movies")]
     [ApiController]
-    public class CreateMovieController(ICreateMovie create) : ControllerBase
+    public class CreateMovieController(ICreate<Movie, MovieDto> create) : ControllerBase
     {
-        private readonly ICreateMovie create = create;
+        private readonly ICreate<Movie, MovieDto> create = create;
         [HttpPost]
         public IActionResult Handle([FromBody] MovieDto movieDto)
         {
             try
             {
-                if(!ModelState.IsValid) return BadRequest(ModelState);           
+                if (!ModelState.IsValid) return BadRequest(ModelState);
                 Movie movie = create.Perform(movieDto);
                 return Ok(movie);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
