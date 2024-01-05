@@ -13,20 +13,27 @@ namespace CinemaChallenge.Application.UseCases.Users
         {
             try
             {
-                List<User> users = await repository.FindBy(user => 
-                    (email == user.Email)
-                );
-                bool checkPassword = encrypter.VerifyPassword(password, users[0].Password);
-                if (checkPassword)
-                {
-                    return "token";
-                } else
-                {
-                    throw new Exception("Senha incorreta");
-                }
+                List<User> users = await FindByEmail(email);
+                CheckPassword(password, users[0].Password);
+                return "token";
             } catch (UserNotExists ex) 
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        private async Task<List<User>> FindByEmail(string email)
+        {
+            List<User> users = await repository.FindBy(user => (email == user.Email));
+            return users;
+        }
+
+        private void CheckPassword(string password, string hashedPassword)
+        {
+            bool checkPassword = encrypter.VerifyPassword(password, hashedPassword);
+            if (!checkPassword)
+            {
+                throw new Exception("Senha incorreta");
             }
         }
     }
