@@ -1,5 +1,6 @@
 ﻿using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Infra.Data.EntityFramework;
+using CinemaChallenge.Infra.Data.Exceptions;
 using CinemaChallenge.Infra.Data.Interfaces;
 
 namespace CinemaChallenge.Infra.Data.Repositories
@@ -10,8 +11,15 @@ namespace CinemaChallenge.Infra.Data.Repositories
 
         public void Create(User data)
         {
-            db.Users.Add(data);
-            db.SaveChanges();
+            User? alreadyExist = db.Users.FirstOrDefault(user => user.Email == data.Email);
+            if (alreadyExist == null)
+            {
+                db.Users.Add(data);
+                db.SaveChanges();
+            } else
+            {
+                throw new EmailAlreadyExistsException($"{data.Email} já está sendo usado por um usuário");
+            }
         }
     }
 }
