@@ -28,6 +28,7 @@ builder.Services.AddScoped<IFind<Movie, IMovie>, FindMovie>();
 builder.Services.AddScoped<IUpdate<IMovie>, UpdateMovie>();
 builder.Services.AddScoped<IUpdate<MovieDto>, UpdateMovie>();
 builder.Services.AddScoped<IDelete, DeleteMovie>();
+builder.Services.AddScoped<ILogin, Login>();
 
 //repositories
 builder.Services.AddScoped<ICreateRepository<Movie>, EFCreateMovie>();
@@ -35,6 +36,7 @@ builder.Services.AddScoped<IFindRepository<Movie>, EFFindMovie>();
 builder.Services.AddScoped<IUpdateRepository<IMovie>, EFUpdateMovie>();
 builder.Services.AddScoped<IDeleteRepository, EFDeleteMovie>();
 builder.Services.AddScoped<ICreateRepository<User>, EFCreateUser>();
+builder.Services.AddScoped<IFindRepository<User>, EFFindbyAuth>();
 
 //db
 builder.Services.AddDbContext<AppDbContext>();
