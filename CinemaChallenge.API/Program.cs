@@ -1,3 +1,4 @@
+using CinemaChallenge.Application.Adapters;
 using CinemaChallenge.Application.DTOs;
 using CinemaChallenge.Application.Interfaces;
 using CinemaChallenge.Application.UseCases;
@@ -16,6 +17,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//adapters
+builder.Services.AddScoped<IEncrypter, Encrypter>();
 
 //usecases
 builder.Services.AddScoped<ICreate<Movie, MovieDto>, CreateMovie>();
