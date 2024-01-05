@@ -6,9 +6,9 @@ namespace CinemaChallenge.Application.UseCases.Movies
     public class DeleteMovie(IDeleteRepository delete) : IDelete
     {
         private readonly IDeleteRepository repository = delete;
-        public void Perform(string id)
+        public async Task Perform(string id)
         {
-            repository.Delete(new Guid(id));
+            await repository.Delete(new Guid(id));
         }
     }
 }

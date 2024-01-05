@@ -8,12 +8,12 @@ namespace CinemaChallenge.Application.UseCases.Movies
     public class UpdateMovie(IUpdateRepository<IMovie> update) : IUpdate<IMovie>, IUpdate<MovieDto>
     {
         private readonly IUpdateRepository<IMovie> repository = update;
-        public void Perform(string id, IMovie data)
+        public async Task Perform(string id, IMovie data)
         {
-            repository.Update(new Guid(id), data);
+            await repository.Update(new Guid(id), data);
         }
 
-        public void Perform(string id, MovieDto data)
+        public async Task Perform(string id, MovieDto data)
         {
             IMovie movie = new()
             {
@@ -21,7 +21,7 @@ namespace CinemaChallenge.Application.UseCases.Movies
                 Synopsis = data.Synopsis,
                 ReleaseDate = data.ReleaseDate,
             };
-            repository.Update(new Guid(id), movie);
+            await repository.Update(new Guid(id), movie);
         }
     }
 }

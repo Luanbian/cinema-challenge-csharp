@@ -12,11 +12,11 @@ namespace CinemaChallenge.API.Controllers.Movies
         private readonly IFind<Movie, IMovie> find = find;
 
         [HttpGet]
-        public IActionResult Handle([FromQuery] IMovie movieProps)
+        public async Task<IActionResult> Handle([FromQuery] IMovie movieProps)
         {
             try
             {
-                List<Movie> movies = find.Perform(movieProps);
+                List<Movie> movies = await find.Perform(movieProps);
                 return Ok(movies);
             }
             catch (Exception ex)

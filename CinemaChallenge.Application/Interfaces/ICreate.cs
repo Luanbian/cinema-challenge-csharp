@@ -2,6 +2,6 @@
 {
     public interface ICreate<T, Dto>
     {
-        T Perform(Dto data);
+        Task<T> Perform(Dto data);
     }
 }

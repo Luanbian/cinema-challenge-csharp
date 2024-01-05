@@ -7,15 +7,15 @@ namespace CinemaChallenge.Infra.Data.Repositories
     public class EFDeleteMovie(AppDbContext appDbContext) : IDeleteRepository
     {
         private readonly AppDbContext db = appDbContext;
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            Movie? movie = db.Movies.Find(id);
+            Movie? movie = await db.Movies.FindAsync(id);
             if (movie != null)
             {
                 movie.IsDeleted = true;
                 movie.DeletedAt = DateTime.Now;
                 db.Movies.Update(movie);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             } else
             {
                 throw new Exception("filme não encontrado");

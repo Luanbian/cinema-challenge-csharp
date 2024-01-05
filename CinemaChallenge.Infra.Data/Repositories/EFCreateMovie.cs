@@ -7,10 +7,10 @@ namespace CinemaChallenge.Infra.Data.Repositories
     public class EFCreateMovie(AppDbContext appDbContext) : ICreateRepository<Movie>
     {
         private readonly AppDbContext db = appDbContext;
-        public void Create(Movie data)
+        public async Task Create(Movie data)
         {
             db.Movies.Add(data);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
     }
 }

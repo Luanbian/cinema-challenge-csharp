@@ -9,7 +9,7 @@ namespace CinemaChallenge.Infra.Data.Interfaces
 {
     public interface IFindRepository<T>
     {
-        List<T> FindAll();
-        List<T> FindBy(Expression<Func<T, bool>> filter);
+        Task<List<T>> FindAll();
+        Task<List<T>> FindBy(Expression<Func<T, bool>> filter);
     }
 }

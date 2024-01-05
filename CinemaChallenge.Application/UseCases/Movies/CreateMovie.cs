@@ -8,13 +8,13 @@ namespace CinemaChallenge.Application.UseCases
     public class CreateMovie(ICreateRepository<Movie> create) : ICreate<Movie, MovieDto>
     {
         private readonly ICreateRepository<Movie> repository = create;
-        public Movie Perform(MovieDto data)
+        public async Task<Movie> Perform(MovieDto data)
         {
             string title = data.Title;
             string synopsis = data.Synopsis;
             string? releaseDate = data.ReleaseDate;
             Movie movie = Movie.Create(title, synopsis, releaseDate);
-            repository.Create(movie);
+            await repository.Create(movie);
             return movie;
         }
     }

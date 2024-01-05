@@ -2,6 +2,6 @@
 {
     public interface IFind<T, I>
     {
-        List<T> Perform(I data);
+        Task<List<T>> Perform(I data);
     }
 }

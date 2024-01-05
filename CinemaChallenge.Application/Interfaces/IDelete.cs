@@ -2,6 +2,6 @@
 {
     public interface IDelete
     {
-        void Perform(string id);
+        Task Perform(string id);
     }
 }

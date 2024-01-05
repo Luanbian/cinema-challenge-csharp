@@ -2,6 +2,7 @@
 using CinemaChallenge.Infra.Data.EntityFramework;
 using CinemaChallenge.Infra.Data.Exceptions;
 using CinemaChallenge.Infra.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaChallenge.Infra.Data.Repositories
 {
@@ -9,13 +10,13 @@ namespace CinemaChallenge.Infra.Data.Repositories
     {
         private readonly AppDbContext db = appDbContext;
 
-        public void Create(User data)
+        public async Task Create(User data)
         {
-            User? alreadyExist = db.Users.FirstOrDefault(user => user.Email == data.Email);
+            User? alreadyExist = await db.Users.FirstOrDefaultAsync(user => user.Email == data.Email);
             if (alreadyExist == null)
             {
                 db.Users.Add(data);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             } else
             {
                 throw new EmailAlreadyExistsException($"{data.Email} já está sendo usado por um usuário");

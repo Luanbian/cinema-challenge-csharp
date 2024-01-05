@@ -12,12 +12,12 @@ namespace CinemaChallenge.API.Controllers.Users
         private readonly ICreate<User, UserDto> create = create;
 
         [HttpPost]
-        public IActionResult Handle([FromBody] UserDto userDto)
+        public async Task<IActionResult> Handle([FromBody] UserDto userDto)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-                User user = create.Perform(userDto);
+                User user = await create.Perform(userDto);
                 return Ok(user);
             } catch (Exception ex)
             {

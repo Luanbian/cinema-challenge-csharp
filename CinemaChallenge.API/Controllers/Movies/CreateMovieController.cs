@@ -11,12 +11,12 @@ namespace CinemaChallenge.API.Controllers.Movies
     {
         private readonly ICreate<Movie, MovieDto> create = create;
         [HttpPost]
-        public IActionResult Handle([FromBody] MovieDto movieDto)
+        public async Task<IActionResult> Handle([FromBody] MovieDto movieDto)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-                Movie movie = create.Perform(movieDto);
+                Movie movie = await create.Perform(movieDto);
                 return Ok(movie);
             }
             catch (Exception ex)

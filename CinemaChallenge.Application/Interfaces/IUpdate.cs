@@ -2,6 +2,6 @@
 {
     public interface IUpdate<T>
     {
-        void Perform(string id, T data);
+        Task Perform(string id, T data);
     }
 }

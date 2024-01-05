@@ -10,7 +10,7 @@ namespace CinemaChallenge.Application.UseCases.Users
     {
         private readonly ICreateRepository<User> repository = create;
         private readonly IEncrypter encrypter = encrypter;
-        public User Perform(UserDto data)
+        public async Task<User> Perform(UserDto data)
         {
             try
             { 
@@ -18,7 +18,7 @@ namespace CinemaChallenge.Application.UseCases.Users
                 string Email = data.Email;
                 string Password = encrypter.Encrypt(data.Password);
                 User user = User.Create(Name, Email, Password);
-                repository.Create(user);
+                await repository.Create(user);
                 return user;
             } catch (EmailAlreadyExistsException ex)
             {

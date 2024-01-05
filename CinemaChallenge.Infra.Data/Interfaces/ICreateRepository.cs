@@ -2,6 +2,6 @@
 {
     public interface ICreateRepository<T>
     {
-        void Create(T data);
+        Task Create(T data);
     }
 }

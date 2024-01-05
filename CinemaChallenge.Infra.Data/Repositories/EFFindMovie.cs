@@ -1,6 +1,7 @@
 ﻿using CinemaChallenge.Domain.Entities;
 using CinemaChallenge.Infra.Data.EntityFramework;
 using CinemaChallenge.Infra.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace CinemaChallenge.Infra.Data.Repositories
@@ -8,14 +9,14 @@ namespace CinemaChallenge.Infra.Data.Repositories
     public class EFFindMovie(AppDbContext appDbContext) : IFindRepository<Movie>
     {
         private readonly AppDbContext db = appDbContext;
-        public List<Movie> FindAll()
+        public async Task<List<Movie>> FindAll()
         {
-            return [.. db.Movies];
+            return await db.Movies.ToListAsync();
         }
 
-        public List<Movie> FindBy(Expression<Func<Movie, bool>> filter)
+        public async Task<List<Movie>> FindBy(Expression<Func<Movie, bool>> filter)
         {
-            return [.. db.Movies.Where(filter)];
+            return await db.Movies.Where(filter).ToListAsync();
         }
     }
 }

@@ -10,11 +10,11 @@ namespace CinemaChallenge.API.Controllers.Movies
         private readonly IDelete delete = delete;
 
         [HttpDelete]
-        public IActionResult Handle([FromQuery] string id)
+        public async Task<IActionResult> Handle([FromQuery] string id)
         {
             try
             {
-                delete.Perform(id);
+                await delete.Perform(id);
                 return Ok($"item {id} excluido com sucesso");
             }
             catch (Exception ex)

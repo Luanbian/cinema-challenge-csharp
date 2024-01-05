@@ -11,12 +11,12 @@ namespace CinemaChallenge.API.Controllers.Movies
         private readonly IUpdate<MovieDto> update = update;
 
         [HttpPut]
-        public IActionResult Handle([FromQuery] string id, [FromBody] MovieDto movieDto)
+        public async Task<IActionResult> Handle([FromQuery] string id, [FromBody] MovieDto movieDto)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-                update.Perform(id, movieDto);
+                await update.Perform(id, movieDto);
                 return Ok($"item {id} recadastrado com sucesso");
             }
             catch (Exception ex)

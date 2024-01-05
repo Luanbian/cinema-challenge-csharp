@@ -10,11 +10,11 @@ namespace CinemaChallenge.API.Controllers.Movies
     {
         private readonly IUpdate<IMovie> update = update;
         [HttpPatch]
-        public IActionResult Handle([FromQuery] string id, [FromBody] IMovie data)
+        public async Task<IActionResult> Handle([FromQuery] string id, [FromBody] IMovie data)
         {
             try
             {
-                update.Perform(id, data);
+                await update.Perform(id, data);
                 return Ok($"atualizado o item {id} com sucesso");
             }
             catch (Exception ex)

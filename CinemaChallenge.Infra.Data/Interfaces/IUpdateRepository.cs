@@ -2,6 +2,6 @@
 {
     public interface IUpdateRepository<T>
     {
-        void Update(Guid id, T data);
+        Task Update(Guid id, T data);
     }
 }
