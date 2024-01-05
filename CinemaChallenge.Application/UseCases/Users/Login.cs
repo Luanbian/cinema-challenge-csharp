@@ -5,9 +5,10 @@ using CinemaChallenge.Infra.Data.Interfaces;
 
 namespace CinemaChallenge.Application.UseCases.Users
 {
-    public class Login(IFindRepository<User> find) : ILogin
+    public class Login(IFindRepository<User> find, IEncrypter encrypter) : ILogin
     {
         private readonly IFindRepository<User> repository = find;
+        private readonly IEncrypter encrypter = encrypter;
         public async Task<string> Perform(string email, string password)
         {
             try
@@ -15,7 +16,14 @@ namespace CinemaChallenge.Application.UseCases.Users
                 List<User> users = await repository.FindBy(user => 
                     (email == user.Email)
                 );
-                return users.Count > 0 ? "sucesso" : "erro";
+                bool checkPassword = encrypter.VerifyPassword(password, users[0].Password);
+                if (checkPassword)
+                {
+                    return "token";
+                } else
+                {
+                    throw new Exception("Senha incorreta");
+                }
             } catch (UserNotExists ex) 
             {
                 throw new Exception(ex.Message);

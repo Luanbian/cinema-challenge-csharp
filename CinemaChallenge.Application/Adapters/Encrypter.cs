@@ -12,5 +12,11 @@ namespace CinemaChallenge.Application.Adapters
             string hashedPassword = HashPassword(password, salt);
             return hashedPassword;
         }
+
+        public bool VerifyPassword(string password, string hashedPassword)
+        {
+            bool checkPassword = Verify(password, hashedPassword);
+            return checkPassword;
+        }
     }
 }
