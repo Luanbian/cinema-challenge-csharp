@@ -20,6 +20,7 @@ builder.Services.AddSwaggerGen();
 
 //adapters
 builder.Services.AddScoped<IEncrypter, Encrypter>();
+builder.Services.AddScoped<IAuthenticate, Authenticate>();
 
 //usecases
 builder.Services.AddScoped<ICreate<Movie, MovieDto>, CreateMovie>();

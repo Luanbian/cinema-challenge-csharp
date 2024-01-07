@@ -5,17 +5,19 @@ using CinemaChallenge.Infra.Data.Interfaces;
 
 namespace CinemaChallenge.Application.UseCases.Users
 {
-    public class Login(IFindRepository<User> find, IEncrypter encrypter) : ILogin
+    public class Login(IFindRepository<User> find, IEncrypter encrypter, IAuthenticate auth) : ILogin
     {
         private readonly IFindRepository<User> repository = find;
         private readonly IEncrypter encrypter = encrypter;
+        private readonly IAuthenticate auth = auth;
+
         public async Task<string> Perform(string email, string password)
         {
             try
             {
                 List<User> users = await FindByEmail(email);
                 CheckPassword(password, users[0].Password);
-                return "token";
+                return auth.GenerateToken(users[0].Id.ToString());
             } catch (UserNotExists ex) 
             {
                 throw new Exception(ex.Message);
