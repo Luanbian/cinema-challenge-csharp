@@ -17,7 +17,8 @@ namespace CinemaChallenge.Application.UseCases.Users
             {
                 List<User> users = await FindByEmail(email);
                 CheckPassword(password, users[0].Password);
-                return auth.GenerateToken(users[0].Id.ToString());
+                string token = auth.GenerateToken(users[0].Id.ToString());
+                return token;
             } catch (UserNotExists ex) 
             {
                 throw new Exception(ex.Message);
@@ -26,8 +27,7 @@ namespace CinemaChallenge.Application.UseCases.Users
 
         private async Task<List<User>> FindByEmail(string email)
         {
-            List<User> users = await repository.FindBy(user => (email == user.Email));
-            return users;
+            return await repository.FindBy(user => (email == user.Email));
         }
 
         private void CheckPassword(string password, string hashedPassword)
